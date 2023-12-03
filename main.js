@@ -17,4 +17,11 @@ let itemArray = []
 
 // then a rendering function of some kind that re-displays everything
 
+function displayList () {
+    // display the list of media items in its entirety
+}
+
 // then specific functionality of buttons and the like
+
+// how should we accept new items from a UI standpoint? static fields?
+// Dynamically create a form only when they want to make a new object?
