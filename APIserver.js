@@ -30,6 +30,8 @@ app.get('/api/getMedia', (req, res) => {
     res.send(mediaList) // just give them the list
 })
 
+// ENDPOINT 2
+
 // Now actually start the server
 
 app.listen(port, () => {
