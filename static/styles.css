@@ -2,7 +2,7 @@
     --main-purple: #998bc0;
     --bold-purple: #5f27c7;
     --main-green: #16843b;
-    --main-grey: #b4b4b4;
+    --main-grey: #a0a0a0;
     --main-red: #e74c3c;
     --main-white: #fff;
     --sub-blue: #86c6f4;
@@ -63,6 +63,7 @@
     border-radius: 4px;
     border-style: solid 1px;
     margin-right: 0.5rem;
+    padding: 3px;
   }
 
   .topButtonBar select {
@@ -109,6 +110,16 @@
 
   .filterButtonBar button:hover {
     background-color: var(--main-purple);
+  }
+
+  .sortButtons {
+    margin-right: 4.5rem;
+  }
+
+  .primaryList {
+    margin-top: 2rem;
+    border: solid 1px var(--bold-purple);
+    border-radius: 4px;
   }
 
 
