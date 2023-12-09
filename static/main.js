@@ -1,5 +1,15 @@
 // this is the main JavaScript file for the Final Project
 
+// BACKEND CONNECTION
+
+fetch('/api/getMedia')
+.then(res => res.json()) // convert the res string into a JSON object
+.then(data => {
+    console.log(data) // console log what we got
+    displayArray(data)
+})
+// it will already use localhost
+
 // First, we need to establish an object structure for a media item
 
 const mediaItem = {
@@ -10,10 +20,6 @@ const mediaItem = {
     itemFav: false,        // simple bool
     itemEditMode: false    // toggle for edit mode
 }
-
-// then we need an array to hold all media items
-
-let itemArray = []
 
 // then a rendering function of some kind that re-displays everything
 

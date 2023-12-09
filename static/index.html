@@ -7,24 +7,48 @@
     <title>MediaTracker</title>
 </head>
 
+<link
+rel="stylesheet"
+href="styles.css"
+/>
+
 <!-- Rendered webapp body begins here -->
 <body>
+<div class="wrapper">
 <div class="listTitleText">
-
+    <h1 class="listTitle">My Media List</h1>
 </div>
 
 <div class="topButtonBar">
-
+    <input type="text" class="titleInput" placeholder="Input a Title">
+    <select type="select" class="categorySelect">
+        <option value="none" selected disabled>Select a Category</option>
+        <!-- the JS will insert the categories as <option> tags here -->
+    </select>
+    <select class="ratingSelect">
+        <option value="none" selected disabled>Select a Rating</option>
+        <!-- the JS will insert the categories as <option> tags here -->
+    </select>
+    <button class="addItemButton">+</button>
 </div>
 <div class="primaryList">
     <div class="filterButtonBar">
-
+        <div class="sortButtons">
+            <h5>Sort By:</h5>
+            <button class="sortRatingButton">Rating</button>
+            <button class="sortTitleButton">Title A-Z</button>
+        </div>
+        <div class="showButtons">
+            <h5>Show item types:</h5>
+            <button class="showCompleteButton">Rating</button>
+            <button class="showIncompleteButton">Title A-Z</button>
+        </div>
     </div>
     <div class="mediaList">
 
     </div>
 </div>
-    
+</div>
 </body>
 </html>
 

@@ -1,0 +1,71 @@
+:root {
+    --main-purple: #998bc0;
+    --bold-purple: #5617cc;
+    --main-green: #16843b;
+    --main-grey: #f2f2f2;
+    --main-red: #e74c3c;
+    --main-white: #fff;
+    --sub-blue: #86c6f4;
+    --sub-grey: #ccc;
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Monaco", sans-serif;
+  }
+
+  .wrapper {
+    margin: 80px auto;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 5px;
+    background: var(--main-white);
+    padding: 25px;
+  }
+
+  body {
+    height: 100vh;
+    width: 100%;
+    background: var(--main-purple);
+  }
+
+  .listTitleText {
+    margin: 1rem;
+    color: var(--bold-purple)
+  }
+
+  .topButtonBar {
+    margin: 1rem;
+  }
+
+  .topButtonBar input {
+    height: 2rem;
+    width: 15rem;
+    border-radius: 4px;
+    border-style: solid 1px;
+    margin-right: 0.5rem;
+  }
+
+  .topButtonBar select {
+    height: 2rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+
+  .topButtonBar button {
+    border-style: none;
+    height: 2rem;
+    width: 4rem;
+    border-radius: 4px;
+    color: white;
+    background-color: var(--main-purple);
+  }
+
+  .topButtonBar button:hover {
+    background-color: var(--bold-purple);
+  }
+
+
+
