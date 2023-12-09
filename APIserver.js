@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 let mediaList = [
     {
+        index: 0,
         itemTitle: 'Armored Core 6',         // title as a string
         itemCategory: 'game',      // category (movie, book, game)
         itemRating: 9,         // 0-10 scale
