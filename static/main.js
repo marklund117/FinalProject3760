@@ -24,6 +24,7 @@ fetch('/api/getMedia')
     displayList(data)
 })
 
+
 // DISPLAY FUNCTION
 function displayList (givenData) {
     // display the list of media items in its entirety
