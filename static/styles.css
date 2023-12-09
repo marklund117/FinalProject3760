@@ -1,8 +1,8 @@
 :root {
     --main-purple: #998bc0;
-    --bold-purple: #5617cc;
+    --bold-purple: #5f27c7;
     --main-green: #16843b;
-    --main-grey: #f2f2f2;
+    --main-grey: #b4b4b4;
     --main-red: #e74c3c;
     --main-white: #fff;
     --sub-blue: #86c6f4;
@@ -17,7 +17,7 @@
   }
 
   .wrapper {
-    margin: 80px auto;
+    margin: 60px auto;
     max-width: 800px;
     width: 100%;
     border-radius: 5px;
@@ -32,8 +32,25 @@
   }
 
   .listTitleText {
+    display: flex;
+    flex-direction: row;
     margin: 1rem;
     color: var(--bold-purple)
+  }
+
+  .listTitleText button {
+    margin-left: 1rem;
+    border-style: none;
+    background-color: var(--main-grey);
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    height: 1.2rem;
+    color: white;
+  }
+
+  .listTitleText button:hover {
+    background-color: var(--main-purple);
   }
 
   .topButtonBar {
@@ -65,6 +82,33 @@
 
   .topButtonBar button:hover {
     background-color: var(--bold-purple);
+  }
+
+  .filterButtonBar {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+  }
+
+  .filterButtonBar h5 {
+    font-weight: lighter;
+    font-size: 1rem;
+    color: var(--bold-purple);
+    margin-bottom: 0.5rem;
+  }
+  
+  .filterButtonBar button {
+    border-style: none;
+    height: 2rem;
+    width: 5rem;
+    border-radius: 4px;
+    color: white;
+    background-color: var(--main-grey);
+    margin-right: 0.5rem;
+  }
+
+  .filterButtonBar button:hover {
+    background-color: var(--main-purple);
   }
 
 
