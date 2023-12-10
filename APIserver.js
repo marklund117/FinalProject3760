@@ -17,9 +17,9 @@ let mediaList = [
     {
         index: 0,
         itemTitle: 'Armored Core 6',         // title as a string
-        itemCategory: 'game',      // category (movie, book, game)
+        itemCategory: 'Game',      // category (movie, book, game)
+        itemCompletion: 'Completed',    // completed, planned, dropped
         itemRating: 9,         // 0-10 scale
-        itemCompletion: 'completed',    // completed, planned, dropped
         itemFav: false,        // simple bool
         itemEditMode: false    // toggle for edit mode
     }
@@ -30,7 +30,16 @@ app.get('/api/getMedia', (req, res) => {
     res.send(mediaList) // just give them the list
 })
 
-// ENDPOINT 2
+// ENDPOINT 2 - SEND THE LIST LENGTH
+app.get('/api/getLength', (req, res) => {
+    res.send(mediaList.length) // give the length
+})
+
+// ENDPOINT 3 - ACCEPT A NEW LIST ITEM
+app.post('/api/postMedia', (req, res) => {
+    mediaList.push(req.body) // put the new item in
+    res.send(mediaList) // send back the updated
+})
 
 // Now actually start the server
 

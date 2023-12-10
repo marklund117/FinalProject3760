@@ -1,12 +1,15 @@
 :root {
     --main-purple: #998bc0;
     --bold-purple: #5f27c7;
-    --main-green: #16843b;
+    --sub-purple: #fbf5ff;
+    --main-blue: #2527af;
     --main-grey: #a0a0a0;
-    --main-red: #e74c3c;
+    --main-red: #c4655a;
     --main-white: #fff;
     --sub-blue: #86c6f4;
-    --sub-grey: #ccc;
+    --sub-grey: #f1f1f1;
+    --soft-gold: #e9dd98;
+    --main-gold: #dbca68;
   }
 
 * {
@@ -120,7 +123,68 @@
     margin-top: 2rem;
     border: solid 1px var(--bold-purple);
     border-radius: 4px;
+    background-color: var(--sub-purple);
   }
 
+  .listItemCSS {
+    list-style: none;
+    padding: 1rem;
+    margin: 1rem;
+    border: solid 1px var(--main-grey);
+    border-radius: 4px;
+    background-color: var(--main-white);
+  }
+
+  .itemTitle {
+    color: var(--bold-purple);
+    margin-bottom: 1rem;
+  }
+
+  .itemCategory, .itemCompletion, .itemRating {
+    margin-right: 0.5rem;
+    border: solid 1px var(--main-grey);
+    padding: 0.3rem;
+    border-radius: 4px;
+  }
+
+  .favButton {
+    border: solid 1px var(--main-grey);
+    width: 5rem;
+    border-radius: 4px;
+    background-color: var(--sub-grey);
+    padding: 0.3rem;
+  }
+
+  .editButton {
+    border: none;
+    width: 5rem;
+    border-radius: 4px;
+    background-color: var(--main-purple);
+    color: white;
+    margin-left: 4rem;
+    height: 1.4rem;
+  }
+
+  .delButton {
+    border: none;
+    width: 5rem;
+    border-radius: 4px;
+    background-color: var(--main-red);
+    color: white;
+    margin-left: 0.5rem;
+    height: 1.4rem;
+  }
+
+  .editButton:hover {
+    background-color: var(--bold-purple);
+  }
+
+  .delButton:hover {
+    background-color: #be2e2e;
+  }
+
+  .favButton:hover {
+    background-color: var(--soft-gold);
+  }
 
 
