@@ -35,6 +35,7 @@ fetch('/api/getMedia')
 
 // DISPLAY FUNCTION
 function displayList (givenData) {
+    mediaList.innerHTML = '' // clear the list before we display
     // display the list of media items in its entirety
     givenData.forEach((item, index) => {
         let newItem // function scoped variable
@@ -149,7 +150,7 @@ async function addItem(){
     }
 
     fetch('/api/postMedia', opts).then(response => response.json())
-  .then(data => console.log(data)) // log server response or handle it accordingly.
+  .then(data => displayList(data)) // re-display
 }
 
 
