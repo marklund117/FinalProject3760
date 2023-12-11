@@ -108,6 +108,23 @@ app.get('/api/sortByFav', (req,res) => {
     res.send(sortedList)
 })
 
+// ENDPOINT 10 - UPDATE LIST TITLE
+app.put('/api/updateListTile', (req,res) => {
+    let newListTitle = req.body.newListTitle;
+    if(newListTitle && typeof newListTitle === "string") {
+        // If we have received a valid string as newListTile, then update listTile
+        listTitle = newListTitle;
+        res.send({ status: 'success', message: 'List Title updated successfully' });
+    } else {
+        // If no valid string received, send an error response.
+        res.status(400).send({ status: 'error', message: 'Invalid request format' });
+    }
+})
+
+// ENDPOINT 11 - GET LIST TITLE
+app.get('/api/getListTitle', (req,res) => {
+    res.send({ listTitle: listTitle })
+})
 
 // Now actually start the server
 

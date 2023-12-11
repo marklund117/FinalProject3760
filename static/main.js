@@ -23,6 +23,15 @@ let stateDrop = document.getElementsByClassName("statusSelect")[0]
 // we need access to the media list element that all items go in
 let mediaList = document.getElementsByClassName("mediaList")[0]
 
+// TITLE DISPLAY
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/api/getListTitle')
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.listTitle').textContent = data.listTitle;
+        })
+})
+
 // BACKEND CONNECTION & INITIAL DISPLAY
 fetch('/api/getMedia')
 .then(res => res.json()) // convert the res string into a JSON object
@@ -329,6 +338,17 @@ function delItem(index){
 
 }
 
+// UPDATE LIST TITLE ON SERVER SIDE
+function updateListTitle(newVal){
+    const opts ={
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newListTitle: newVal })
+     }
+
+     fetch('/api/updateListTile', opts)
+}
+
 // SORTING *******************
 
 // SORT ITEMS BY RATING
@@ -420,6 +440,31 @@ document.querySelector(".filterButtonBar").addEventListener("click", async event
     // check if the clicked element is a button with the class name sortFavButton
     if(targetElement.className === 'sortFavButton') {
         sortItemsByFavorite()
+    }
+})
+
+// list title editing
+let editingTitle = false;
+let titleButton = document.querySelector(".titleEditButton");
+document.querySelector(".titleEditButton").addEventListener("click", () => {
+    let titleElement = document.querySelector('.listTitle');
+    if(!editingTitle) {
+        // If we're not currently editing, replace the h1 with an input field containing its current value
+        let currentValue = titleElement.textContent
+        titleElement.innerHTML = `<input type="text" class="titleInput" value="${currentValue}">`
+        document.querySelector('.titleInput').focus();
+        titleButton.textContent = "Save"; // change button text to 'Save'
+        editingTitle = true
+    } else {
+        // If we are currently editing, take whatever is in the input field and put it back into an h1
+        let newValue = document.querySelector('.titleInput').value
+        titleElement.textContent = newValue
+
+       // Update listTitle on server side as well (assuming you've set up API for this)
+       updateListTitle(newValue)
+
+       titleButton.textContent = "Edit List Title";  // revert button text back to 'Edit List Title'
+       editingTitle = false
     }
 })
 
