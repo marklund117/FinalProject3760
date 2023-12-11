@@ -1,6 +1,6 @@
 ## The GitHub repository for my final project in the 3760 course.
 
-## User Stories [/15 functional]:
+## User Stories [10.5/15 functional]:
 
 1) User can add a new entry representing a media title [WORKING]
 2) User can assign each piece of media a category (movie, book, game) [WORKING]
