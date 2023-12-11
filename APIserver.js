@@ -25,23 +25,20 @@ let mediaList = [
     }
 ]
 
+let listTitle = 'My Media List'
+
 // ENDPOINT 1 - SEND THE ENTIRE LIST
 app.get('/api/getMedia', (req, res) => {
     res.send(mediaList) // just give them the list
 })
 
-// ENDPOINT 2 - SEND THE LIST LENGTH
-app.get('/api/getLength', (req, res) => {
-    res.send(mediaList.length) // give the length
-})
-
-// ENDPOINT 3 - ACCEPT A NEW LIST ITEM
+// ENDPOINT 2 - ACCEPT A NEW LIST ITEM
 app.post('/api/postMedia', (req, res) => {
     mediaList.push(req.body) // put the new item in
     res.send(mediaList) // send back the updated
 })
 
-// ENDPOINT 4 - SWITCH AN ITEM INTO EDIT MODE 
+// ENDPOINT 3 - SWITCH AN ITEM INTO EDIT MODE 
 app.put('/api/editMedia/:id', (req, res) => {
     const givenIndex = req.params.id; // get the index from url parameter
     let changedItem = mediaList[givenIndex]
@@ -51,14 +48,31 @@ app.put('/api/editMedia/:id', (req, res) => {
     res.send(mediaList); // send back updated list
 })
 
-// ENDPOINT 5 - SWITCH AN ITEM OUT OF EDIT MODE
-app.put('/api/saveMedia/:id', (req, res) => {
-    const givenIndex = req.params.id; // get the index from url parameter
-    let changedItem = mediaList[givenIndex]
-    changedItem.itemEditMode = false
+// ENDPOINT 4 - SPLICE AN EDITED ITEM IN (and remove edit mode)
+app.post('/api/sendMedia/:id', (req, res) => {
+    const givenIndex = req.body.index; // get the index from url parameter
+    let changedItem = req.body
+    changedItem.itemEditMode = false // take it out of edit mode
+    if (mediaList[givenIndex].itemFav === true) {
+        changedItem.itemFav = true
+    }
     mediaList.splice(givenIndex, 1, changedItem) // splice the new one in
 
     res.send(mediaList); // send back updated list
+})
+
+// ENDPOINT 5 - TOGGLE FAVORITE
+app.put('/api/favMedia/:id', (req, res) => {
+    const givenIndex = req.params.id;
+    let itemToChange = mediaList[givenIndex]
+    if (itemToChange.itemFav) {
+        itemToChange.itemFav = false
+    } else {
+        itemToChange.itemFav = true
+    }
+    mediaList.splice(givenIndex, 1, itemToChange)
+
+    res.send(mediaList)
 })
 
 // Now actually start the server
