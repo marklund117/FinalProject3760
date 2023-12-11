@@ -104,11 +104,12 @@
   .filterButtonBar button {
     border-style: none;
     height: 2rem;
-    width: 5rem;
+    width: 4rem;
     border-radius: 4px;
     color: white;
     background-color: var(--main-grey);
     margin-right: 0.5rem;
+    font-size: 11px;
   }
 
   .filterButtonBar button:hover {

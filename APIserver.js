@@ -58,7 +58,7 @@ app.post('/api/sendMedia/:id', (req, res) => {
     }
     mediaList.splice(givenIndex, 1, changedItem) // splice the new one in
 
-    res.send(mediaList); // send back updated list
+    res.send(mediaList) // send back updated list
 })
 
 // ENDPOINT 5 - TOGGLE FAVORITE
@@ -79,12 +79,35 @@ app.put('/api/favMedia/:id', (req, res) => {
 app.delete('/api/delMedia/:id', (req, res) => {
     const givenIndex = parseInt(req.params.id);
     if(mediaList[givenIndex]){
-        mediaList.splice(givenIndex, 1);
-        res.send(mediaList);
+        mediaList.splice(givenIndex, 1)
+        res.send(mediaList)
      } else {
-         res.status(400).json({error: "Item not found"});
+         res.status(400).json({error: "Item not found"})
      }
 })
+
+// ENDPOINT 7 - RETURN A LIST SORTED BY RATING (high-low)
+app.get('/api/sortByRating', (req, res) => {
+    let sortedList = [...mediaList] // Create a copy of media list
+    sortedList.sort((a,b) => b.itemRating - a.itemRating)
+    res.send(sortedList)
+});
+
+// ENDPOINT 8 - RETURN A LIST SORTED BY TITLE (A-Z)
+app.get('/api/sortByTitle', (req,res) => {
+    let sortedList = [...mediaList] // Create a copy of media list so original doesn't get sorted
+    sortedList.sort((a,b) => a.itemTitle.localeCompare(b.itemTitle))
+    res.send(sortedList)
+    console.log(sortedList)
+})
+
+// ENDPOINT 9 - RETURN A LIST SORTED BY FAVORITES
+app.get('/api/sortByFav', (req,res) => {
+    let sortedList = [...mediaList] // Create a copy of media list so original doesn't get sorted
+    sortedList.sort((a,b) => b.itemFav - a.itemFav)
+    res.send(sortedList)
+})
+
 
 // Now actually start the server
 

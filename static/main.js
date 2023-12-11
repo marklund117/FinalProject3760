@@ -329,7 +329,30 @@ function delItem(index){
 
 }
 
-// EVENT LISTENERS
+// SORTING *******************
+
+// SORT ITEMS BY RATING
+function sortItemsByRating() {
+    fetch('/api/sortByRating')
+        .then(response => response.json())
+        .then(data => displayList(data)); // re-display sorted list
+}
+
+// SORT ITEMS BY TITLE
+function sortItemsByTitle() {
+    fetch('/api/sortByTitle')
+        .then(response => response.json())
+        .then(data => displayList(data)); // re-display sorted list
+}
+
+// SORT ITEMS BY FAVORITE STATUS
+function sortItemsByFavorite() {
+    fetch('/api/sortByFav')
+        .then(response => response.json())
+        .then(data => displayList(data)); // re-display sorted list
+  }
+
+// EVENT LISTENERS ****************
 
 // add item button
 document.getElementsByClassName("addItemButton")[0].addEventListener("click", addItem)
@@ -363,10 +386,41 @@ document.querySelector(".mediaList").addEventListener("click", async event => {
 
 // delete Button
 document.querySelector(".mediaList").addEventListener("click", async event => {
-    let targetElement = event.target;
+    let targetElement = event.target
     // check if the clicked element is a button with the class name delButton
     if(targetElement.className === 'delButton') {
-        let index = targetElement.dataset.num;
-        delItem(index);
+        let index = targetElement.dataset.num
+        delItem(index)
     }
 })
+
+// SORTING AND FILTERS ********
+
+// sortRatingButton
+document.querySelector(".filterButtonBar").addEventListener("click", async event => {
+    let targetElement = event.target
+    // check if the clicked element is a button with the class name sortRatingButton
+    if(targetElement.className === 'sortRatingButton') {
+        sortItemsByRating()
+    }
+});
+
+// sortTitleButton
+document.querySelector(".filterButtonBar").addEventListener("click", async event => {
+    let targetElement = event.target
+    // check if the clicked element is a button with the class name sortTitleButton
+    if(targetElement.className === 'sortTitleButton') {
+        sortItemsByTitle()
+    }
+})
+
+// sortFavButton
+document.querySelector(".filterButtonBar").addEventListener("click", async event => {
+    let targetElement = event.target
+    // check if the clicked element is a button with the class name sortFavButton
+    if(targetElement.className === 'sortFavButton') {
+        sortItemsByFavorite()
+    }
+})
+
+
