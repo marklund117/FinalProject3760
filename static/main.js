@@ -361,7 +361,7 @@ document.querySelector(".mediaList").addEventListener("click", async event => {
     }
 })
 
-// Delete Button
+// delete Button
 document.querySelector(".mediaList").addEventListener("click", async event => {
     let targetElement = event.target;
     // check if the clicked element is a button with the class name delButton
