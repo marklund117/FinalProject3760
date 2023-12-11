@@ -316,6 +316,19 @@ function favItem(index){
 
 }
 
+// DELETE ITEM
+function delItem(index){
+    let opts = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    }
+
+    fetch('/api/delMedia/' + index, opts)
+      .then(response => response.json())
+      .then(data => displayList(data)); // re-display updated list
+
+}
+
 // EVENT LISTENERS
 
 // add item button
@@ -345,5 +358,15 @@ document.querySelector(".mediaList").addEventListener("click", async event => {
     if(targetElement.className === 'favButton') {
         let index = targetElement.dataset.num;
         favItem(index);
+    }
+})
+
+// Delete Button
+document.querySelector(".mediaList").addEventListener("click", async event => {
+    let targetElement = event.target;
+    // check if the clicked element is a button with the class name delButton
+    if(targetElement.className === 'delButton') {
+        let index = targetElement.dataset.num;
+        delItem(index);
     }
 })

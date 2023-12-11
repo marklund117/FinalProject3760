@@ -75,6 +75,17 @@ app.put('/api/favMedia/:id', (req, res) => {
     res.send(mediaList)
 })
 
+// ENDPOINT 6 - DELETE AN ITEM
+app.delete('/api/delMedia/:id', (req, res) => {
+    const givenIndex = parseInt(req.params.id);
+    if(mediaList[givenIndex]){
+        mediaList.splice(givenIndex, 1);
+        res.send(mediaList);
+     } else {
+         res.status(400).json({error: "Item not found"});
+     }
+})
+
 // Now actually start the server
 
 app.listen(port, () => {
