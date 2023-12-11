@@ -87,6 +87,10 @@ function buildItem(givenItem, index) {
     let delButton = document.createElement('button')
     delButton.className = 'delButton' // for css
 
+    // DATASET STUFF
+    editButton.dataset.num = index
+    delButton.dataset.num = index
+
     // now we need to put in the actual values
     titleElement.innerText = givenItem.itemTitle
     categoryElement.innerText = `Category: ${givenItem.itemCategory}`
@@ -151,6 +155,46 @@ async function addItem(){
 
     fetch('/api/postMedia', opts).then(response => response.json())
   .then(data => displayList(data)) // re-display
+  let toClear = document.getElementsByClassName("titleInput")[0]
+  toClear.value = '' // clear the value out
+}
+
+// CHECK ITEM MODE FUNCTION
+async function checkMode(index) {
+    const response = await fetch('/api/getMedia');
+    const data = await response.json();
+
+    if (data[index].itemEditMode === true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// TOGGLE AN ITEM INTO EDIT MODE
+function editItem(index){
+    fetch('/api/editMedia/' + index, {
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+         },
+         body: ''
+     }).then(response => response.json())
+       .then(data => displayList(data)) // re display
+       console.log(`Attempted to switch item at index ${index} into edit mode.`)
+}
+
+// TOGGLE AN ITEM OUT OF EDIT MODE
+function saveItem(index){
+    fetch('/api/saveMedia/' + index, {
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+         },
+         body: ''
+     }).then(response => response.json())
+       .then(data => displayList(data)) // re display
+       console.log(`Attempted to switch item at index ${index} out of edit mode.`)
 }
 
 
@@ -158,3 +202,20 @@ async function addItem(){
 
 // add item button
 document.getElementsByClassName("addItemButton")[0].addEventListener("click", addItem)
+
+// edit/save item button
+document.querySelector(".mediaList").addEventListener("click", async event => {
+    let targetElement = event.target
+    // check if the clicked element is a button with the class name editButton
+    if(targetElement.className === 'editButton') {
+        let index = targetElement.dataset.num
+        let isEditModeOn = await checkMode(index)
+        console.log(`checkmode returned ${isEditModeOn}`)
+        if (isEditModeOn) { // if the item is already in edit mode...
+            saveItem(index) // save the data and take it back out of edit mode
+        }
+        else { // if it's not in edit mode yet...
+            editItem(index) // put it in edit mode
+        }
+    }
+})

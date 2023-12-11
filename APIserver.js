@@ -41,6 +41,26 @@ app.post('/api/postMedia', (req, res) => {
     res.send(mediaList) // send back the updated
 })
 
+// ENDPOINT 4 - SWITCH AN ITEM INTO EDIT MODE 
+app.put('/api/editMedia/:id', (req, res) => {
+    const givenIndex = req.params.id; // get the index from url parameter
+    let changedItem = mediaList[givenIndex]
+    changedItem.itemEditMode = true
+    mediaList.splice(givenIndex, 1, changedItem) // splice the new one in
+
+    res.send(mediaList); // send back updated list
+})
+
+// ENDPOINT 5 - SWITCH AN ITEM OUT OF EDIT MODE
+app.put('/api/saveMedia/:id', (req, res) => {
+    const givenIndex = req.params.id; // get the index from url parameter
+    let changedItem = mediaList[givenIndex]
+    changedItem.itemEditMode = false
+    mediaList.splice(givenIndex, 1, changedItem) // splice the new one in
+
+    res.send(mediaList); // send back updated list
+})
+
 // Now actually start the server
 
 app.listen(port, () => {
